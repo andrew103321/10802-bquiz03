@@ -60,7 +60,7 @@
              
             }
           
-
+            return $pdo->exec($sql);
         }
 
        function save($table,$data){
@@ -95,6 +95,11 @@
             return $pdo->query($sql)->fetchALL();
         }
      
-
+        $level=[
+            1=>["03C01.png","普遍級"],
+            2=>["03C02.png","輔導級"],
+            3=>["03C03.png","保護級"],
+            4=>["03C04.png","限制級"],
+        ];
 
 ?>

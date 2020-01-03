@@ -1,26 +1,83 @@
-<div class="tab rb" style="width:87%;">
-      <div style="background:#FFF; width:100%; color:#333; text-align:left">
-        <video src="movie/03B20v.avi" width="300px" height="250px" controls="" style="float:right;"></video>
-        <font style="font-size:24px"> <img src="Profile page_files/03B20.png" width="200px" height="250px" style="margin:10px; float:left">
-        <p style="margin:3px">影片名稱 ：
-          <input type="button" value="線上訂票" onclick="lof(&#39;?do=ord&amp;id=4&#39;)" style="margin-left:50px; padding:2px 4px" class="b2_btu">
-        </p>
-        <p style="margin:3px">影片分級 ： <img src="Profile page_files/03C04.png" style="display:inline-block;">限制級 </p>
-        <p style="margin:3px">影片片長 ： 時/分</p>
-        <p style="margin:3px">上映日期 2014/02/14</p>
-        <p style="margin:3px">發行商 ： </p>
-        <p style="margin:3px">導演 ： </p>
-        <br>
-        <br>
-        <p style="margin:10px 3px 3px 3px; word-break:break-all"> 劇情簡介：<br>
-        </p>
-        </font>
-        <table width="100%" border="0">
-          <tbody>
-            <tr>
-              <td align="center"><input type="button" value="院線片清單" onclick="lof(&#39;?&#39;)"></td>
-            </tr>
-          </tbody>
-        </table>
+<style>
+.movie-list{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:start;
+}
+.movie-box{
+  width:48%;
+  margin:0.5%;
+  box-sizing:border-box;
+  border:1px solid #ccc;
+  border-radius:10px;
+  display:flex;
+  flex-wrap:wrap;
+  padding:10px 3px;
+}
+  .movie-poster img{
+    width:55px;
+    height:70px;
+  }
+  .movie-poster {
+    width:30%;
+ 
+  }
+  .movie-info {
+    width:40%;
+ 
+  }
+  .movie-info li{
+    list-style-type:none;
+    padding:0;
+    font-size:12px;
+ 
+  }
+
+</style>
+<div class="half" style="vertical-align:top;">
+      <h1>預告片介紹</h1>
+      <div class="rb tab" style="width:95%;">
+        <div id="abgne-block-20111227">
+          <ul class="lists">
+          </ul>
+          <ul class="controls">
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="half">
+    
+      <h1>院線片清單</h1>
+      <div class="rb tab" style="width:95%;">
+      <div class="movie-list">
+      <?php
+$today = date("Y-m-d");
+$startDay = date("Y-m-d",strtotime("-2 days"));
+$sql = "select *from movie where sh='1' && ondate >= '$startDay' &&  ondate <= '$today' order by rank";
+$movies = q($sql);
+foreach($movies as $m){
+
+?>
+<div class="movie-box">
+  <div class="movie-poster">
+    <img src="./movie/<?=$m["poster"];?>" alt="">
+    </div>
+    <div class="movie-info">
+        <li><?=$m["name"];?></li>
+        <li><?=$m["level"];?></li>
+        <li><?=$m["ondate"];?></li>
+    </div>
+    <div class='movie-btn'>
+      <button>劇情簡介</button>
+      <button>線上訂票</button>
+    </div>
+  </div>
+
+<?php
+}
+?>
+</div>
+        <div class="ct">分頁</div>
       </div>
     </div>
