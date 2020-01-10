@@ -18,8 +18,10 @@
                     <input type="button" value="往下" id=<?=$p['id']."-".$next?>>
                 </li>
                 <li>
-                    <input type="checkbox" name="sh[]" id="<?=$p['id'];?>" <?=($p['sh']==1)?'checked':"";?>>顯示
-                    <input type="checkbox" name="del[]" id="<?=$p['id'];?>">刪除
+                    <input type="checkbox" name="sh[]" value="<?=$p['id'];?>" <?=($p['sh']==1)?'checked':"";?>>顯示
+                    <input type="checkbox" name="del[]" value="<?=$p['id'];?>">刪除
+
+
                     <select name="ani[]" >
                             <option value="1" <?=($p['ani']==1)?"selected":"";?>>淡入淡出</option>
                             <option value="2" <?=($p['ani']==2)?"selected":"";?>>滑入滑出</option>

@@ -19,7 +19,7 @@ h3{
     color:black;
     text-align:center;
     padding:0;
-    margin:5px;
+    margin:0;
 
 }
 .header li,.row li{
@@ -27,22 +27,18 @@ h3{
     width:24.5%;
     margin:0.25%;
 }
-.row{
+.row ,.row li{
     background:white;
 }
-.row li{
-    color:black;
-    background:white;
+
+.items{
+    height: 300px;
+    overflow:auto;
 }
 .row img{
     width:80px;
     height:100px;
-}
-.items{
-    height: 300px;
-    overflow:hidden;
-
-}
+ }
 </style>
 <div class="list">
     <h3>預告片清單</h3>

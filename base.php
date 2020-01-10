@@ -92,14 +92,55 @@
 
         function q($sql){
             global $pdo;
-            return $pdo->query($sql)->fetchALL();
+            return $pdo->query($sql)->fetchAll();
         }
      
-        $level=[
+      
+
+        function nums($table,...$arg){
+            global $pdo;
+          
+            $sql="select count(*) from $table";
+          
+              if(!empty($arg[0])){
+          
+                foreach($arg[0] as $key => $value){
+          
+                  $tmp[]=sprintf("`%s`='%s'",$key,$value);
+          
+                }
+          
+                $sql=$sql . " where " . implode(" && ",$tmp);
+          
+              }    
+          
+              if(!empty($arg[1])){
+          
+                $sql=$sql . $arg[1];
+          
+              }
+          
+            //echo $sql;
+          
+            return $pdo->query($sql)->fetchColumn();  
+          
+          }
+
+          $level=[
             1=>["03C01.png","普遍級"],
             2=>["03C02.png","輔導級"],
             3=>["03C03.png","保護級"],
             4=>["03C04.png","限制級"],
         ];
+
+        $sess=[
+            1=> "14:00~16:00",
+            2=> "16:00~18:00",
+            3=> "18:00~20:00",
+            4=> "20:00~22:00",
+            5=> "22:00~24:00"
+        ];
+
+        
 
 ?>

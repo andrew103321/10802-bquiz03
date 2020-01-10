@@ -31,11 +31,11 @@ getlist()
 
 // ---------------------------刪除--------------------------------
             $(".delBtn").on("click",function(){
-               
+            
             let id =$(this).data('del')
      
             $.post("./api/del.php",{"table":"movie",id},function(res){
-          
+                    console.log(res)
                 getlist()
             })
         })
