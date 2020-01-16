@@ -4,7 +4,7 @@
     sort($_GET['seat']);
 
 
-    //  serialize 將一組表單元素編碼成字串以利於提交。
+    //  serialize 將一組表單元素(陣列)編碼成字串以利於提交。
         $data["seat"] = serialize($_GET['seat']) ;
         $data["movie"] = $_GET['movie'];
         $data["date"] = $_GET['date'];

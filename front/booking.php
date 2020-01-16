@@ -45,14 +45,42 @@
     $date = $_GET['date'];
     $session = $_GET['session'];
 
+
+   $orders = q("select  *from ord where movie='$movie' && date='$date' && session='$session'");
+    //    座位顯示有人 方法一
+
+    // array_merge 結合同場次被訂走座位陣列
+    $merge = [];
+    foreach($orders as $o){
+        $merge = array_merge($merge,unserialize($o['seat']));
+    }
+    //  echo "<pre>";print_r($merge);"</pre>";
+
+       //    座位顯示有人 方法二
+    // 建一個陣列 array_fill(起始,要幾個, 要填入字);
+       $new=array_fill(0,20,0);
+
+       foreach($merge as $m){
+        // echo "$m<br>";
+        $new[$m]=1;
+    }
+    //    echo "<pre>";print_r($new);"</pre>";
 ?>
     <div class="room">
         <?php
-            for($i=0;$i<20;$i++){
-                echo  "<div class='seat null'>";
-                echo "<div class='ct'>".(floor($i/5)+1)."排".($i%5+1)."號</div>";
-                echo "<input type='checkbox' value='$i' class='chk'>";
-                
+         // 配合方法一
+            // for($i=0;$i<20;$i++){
+            //     if(in_array($i,$merge)){
+        // 配合方法二
+            foreach($new as $i => $n){
+                if($n==1){    
+                    echo "<div class='seat pick'>";
+                }else{
+                    echo "<div class='seat null'>";
+                    echo "<input type='checkbox' value='$i' class='chk'>";
+                }
+                // echo  "<div class='seat null'>";
+                echo "<div class='ct'>".(floor($i/5)+1)."排".($i%5+1)."號</div>";              
                 echo "</div>";
             }
         ?>
@@ -76,12 +104,18 @@
             if(num<4){
                 num++;
                 seat.push($(this).val())
-                // $(this).parent('.seat').removeClass("null")
-                // $(this).parent('.seat').addClass("pick")
+
+                //  可以不用做的炫技
+                $(this).parent().removeClass("null")
+                $(this).parent().addClass("pick")
             }else{
 
                 alert("最多只能四張張票");
                 $(this).prop("cheked",false)
+
+                //可以不用做的炫技
+                $(this).parent().removeClass("pick")
+                $(this).parent().addClass("null")
             }
            
         }else{
