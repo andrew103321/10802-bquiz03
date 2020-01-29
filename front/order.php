@@ -65,7 +65,7 @@
       $("#date").on("change",function(){
             // let id = $("movie").val()
             // getSession(id,date)
-            getDate(getForm().id,getForm().date)
+            getSession(getForm().id,getForm().date)
       })
       $("#send").on("click",function(){
             $("form").hide()
